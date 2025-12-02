@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Tag Extractor - AI Powered</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">
+                <span class="glow">PDF</span> Tag Extractor
+            </h1>
+            <p class="subtitle">AI-Powered Document Analysis</p>
+        </div>
+
+        <div class="upload-section">
+            <div class="upload-box" id="uploadBox">
+                <div class="upload-icon">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                </div>
+                <h3>Upload PDF Document</h3>
+                <p>Drag and drop your PDF file here or click to browse</p>
+                <input type="file" id="fileInput" accept=".pdf" hidden>
+                <button class="browse-btn" onclick="document.getElementById('fileInput').click()">Browse Files</button>
+                <div class="file-info" id="fileInfo"></div>
+            </div>
+
+            <button class="submit-btn" id="submitBtn" disabled>
+                <span class="btn-text">Extract Tags</span>
+                <span class="btn-loader" id="btnLoader"></span>
+            </button>
+        </div>
+
+        <div class="main-content">
+            <div class="content-left">
+                <div class="results-section" id="resultsSection" style="display: none;">
+                    <h2 class="results-title">Extracted Tags & Values</h2>
+                    <div class="results-container" id="resultsContainer"></div>
+                </div>
+                <div class="error-message" id="errorMessage"></div>
+            </div>
+            
+            <div class="pdf-viewer-section" id="pdfViewerSection" style="display: none;">
+                <div class="pdf-viewer-header">
+                    <h3>Document Display</h3>
+                    <button class="close-pdf-btn" id="closePdfBtn" title="Close PDF viewer">×</button>
+                </div>
+                <div class="pdf-viewer-container">
+                    <div class="pdf-canvas-wrapper" id="pdfCanvasWrapper">
+                        <canvas id="pdfCanvas"></canvas>
+                        <div class="bbox-overlay" id="bboxOverlay"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
+
